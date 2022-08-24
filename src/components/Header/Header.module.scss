@@ -1,0 +1,14 @@
+@import "../../assets/styles/variables";
+
+.header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: $primary-black;
+
+  img {
+    max-height: 50px;
+  }
+}

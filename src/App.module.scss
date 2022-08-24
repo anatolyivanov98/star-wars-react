@@ -1,0 +1,9 @@
+@import "./assets/styles/main";
+
+.app {
+  background: url('./assets/img/background.jpeg');
+  background-size: cover;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 7fr;
+}
