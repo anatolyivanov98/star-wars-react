@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import style from './App.module.scss'
 import './locales/config'
 import { Route, Routes } from 'react-router-dom'
@@ -8,9 +8,14 @@ import { People } from './components/Pages/People/People'
 import { Favorites } from './components/Pages/Favorites/Favorites'
 
 function App (): JSX.Element {
+  const [isNavbarToggle, setNavbarToggle] = useState(true)
+
+  const toggleNavbar = (): void => {
+    setNavbarToggle(!isNavbarToggle)
+  }
   return (
-    <div className={style.app}>
-      <Navbar/>
+    <div className={isNavbarToggle ? style.app : style.appFull}>
+      <Navbar handler={toggleNavbar} isNavbarToggle={isNavbarToggle}/>
       <div>
         <Header />
         <Routes>

@@ -1,18 +1,54 @@
 @import "../../assets/styles/variables";
 
-.navbar {
-  background: $primary-black;
+.navbar, .navbarFull {
+  background: $secondary-black;
   display: grid;
+
+  .toggleBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    margin: 20px 20px 20px auto;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid $border-grey-color;
+    transition: $transition;
+
+    a {
+      padding: 10px;
+      font-size: 22px;
+      border-bottom: 1px solid $border-grey-color;
+      color: $font-color;
+      transition: $transition;
+      &:hover {
+        background: $hover-black;
+      }
+    }
+  }
+}
+
+.navbarFull {
   grid-auto-rows: 70px max-content;
 }
 
-.toggleBlock {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 25px;
-  margin: 20px 20px 20px auto;
+.navbar {
+  grid-auto-rows: 70px 0;
+  height: 70px;
+
+  .toggleBlock {
+    margin-left: 20px;
+  }
+
+  .links {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
 }
 
 .toggleLine {
@@ -21,11 +57,7 @@
   width: 30px;
 }
 
-.links {
-  display: flex;
-  flex-direction: column;
-}
-
 .active {
   color: $white !important;
+  background: $primary-black;
 }
