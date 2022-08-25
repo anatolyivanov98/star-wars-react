@@ -25,6 +25,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': ['off'],
     '@typescript-eslint/ban-ts-comment': ['off'],
     '@typescript-eslint/explicit-module-boundary-types': ['off'],
+    '@typescript-eslint/strict-boolean-expressions': ['off'],
     '@typescript-eslint/no-shadow': ['error'],
     'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
     'space-before-function-paren': ['error'],
@@ -42,6 +43,6 @@ module.exports = {
     'import/no-dynamic-require': 'off',
     'global-require': 'off',
     'max-len': ['error', { code: 140 }],
-    'no-undef': 'off',
+    'no-undef': 'off'
   }
 }

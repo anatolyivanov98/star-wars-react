@@ -18,8 +18,10 @@ export const Header = (): JSX.Element => {
 
   return (
     <header className={style.header}>
-      <BaseInput handler={handlerSearch}/>
-      <BaseDropdown options={genderFilterConfig} handler={handlerFilter}/>
+      <div className={style.actionBlock}>
+        <BaseInput handler={handlerSearch}/>
+        <BaseDropdown options={genderFilterConfig} handler={handlerFilter}/>
+      </div>
       <img src={logo} alt="STAR WARS"/>
     </header>
   )

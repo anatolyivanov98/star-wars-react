@@ -11,4 +11,10 @@
   img {
     max-height: 50px;
   }
+
+  .actionBlock {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+  }
 }
