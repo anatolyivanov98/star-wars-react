@@ -11,6 +11,6 @@ export const BaseInput = ({ handler }: IBaseInputProps): JSX.Element => {
   }
 
   return (
-    <input className={style.baseInput} type="text" onInput={changeInput}/>
+    <input className={style.input} type="text" onInput={changeInput}/>
   )
 }

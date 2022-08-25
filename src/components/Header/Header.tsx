@@ -3,14 +3,23 @@ import React from 'react'
 import { BaseInput } from '../UI/BaseInput/BaseInput'
 import style from './Header.module.scss'
 import logo from '../../assets/img/logo.svg'
+import { BaseDropdown } from '../UI/BaseDropdown/BaseDropdown'
+import { genderFilterConfig } from '../../configs/genderFilter'
+import { IGenderOption } from '../../shared/types'
 
 export const Header = (): JSX.Element => {
   const handlerSearch = (value: string): void => {
     console.log('value: ', value)
   }
+
+  const handlerFilter = (item: IGenderOption): void => {
+    console.log('handlerFilter: ', item)
+  }
+
   return (
     <header className={style.header}>
       <BaseInput handler={handlerSearch}/>
+      <BaseDropdown options={genderFilterConfig} handler={handlerFilter}/>
       <img src={logo} alt="STAR WARS"/>
     </header>
   )
