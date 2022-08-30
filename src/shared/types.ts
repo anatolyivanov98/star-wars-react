@@ -24,11 +24,20 @@ export interface IPeople {
   vehicles: string[]
 }
 
+export type TPaginationPeople = IPeople & {id?: string, isFavorite?: boolean}
+
+export interface IPaginationModel {
+  count: number
+  currentPage: number
+  pages: number
+  data: TPaginationPeople[]
+}
+
 // API
 
 export interface IRequestPeople {
   count: number
   next: string | null
   previous: string | null
-  results: IPeople[]
+  results: TPaginationPeople[]
 }

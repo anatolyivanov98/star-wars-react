@@ -1,0 +1,14 @@
+@import "./src/assets/styles/variables";
+
+.btn {
+  display: flex;
+  column-gap: 10px;
+
+  .text {
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 700;
+    border: 1px solid $border-grey-color;
+    width: 50px;
+  }
+}

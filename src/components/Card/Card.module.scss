@@ -1,7 +1,33 @@
 @import "/src/assets/styles/variables";
 
 .card {
-  height: 500px;
-  width: 300px;
-  background: $white;
+  height: 610px;
+  width: 100%;
+  max-width: 400px;
+  background: $primary-white;
+  border-radius: 10px;
+  overflow: hidden;
+
+  .imageBlock {
+    height: 500px;
+
+    .img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .descriptionBlock {
+    display: grid;
+    grid-template-columns: 10fr 1fr;
+    padding: 10px;
+    border-top: 1px solid $border-grey-color;
+  }
+
+  .title {
+    color: $primary-black;
+    font-size: 24px;
+    font-weight: 500;
+  }
 }

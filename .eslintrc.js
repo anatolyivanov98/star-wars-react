@@ -32,9 +32,7 @@ module.exports = {
     'no-console': ['off'],
     'no-param-reassign': [
       'error', {
-        props: true,
-        ignorePropertyModificationsForRegex: ['^state'],
-        ignorePropertyModificationsFor: ['acc']
+        props: false
       }
     ],
     'no-return-await': ['off'],
