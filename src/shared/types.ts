@@ -1,6 +1,8 @@
+import { GENDER } from './enums'
+
 export interface IGenderOption {
   id: number
-  value: string
+  value: GENDER
   label: string
   isDefaultValue: boolean
 }

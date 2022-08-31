@@ -8,6 +8,7 @@ import style from './People.module.scss'
 import { Pagination } from '../../Pagination/Pagination'
 import { PEOPLE_TYPE } from '../../../shared/enums'
 import { Loader } from '../../UI/Loader/Loader'
+import { getFilterPeople } from '../../../shared/utils/getFilterPeople'
 
 export const People = observer((): JSX.Element => {
   useEffect(() => {
@@ -20,7 +21,9 @@ export const People = observer((): JSX.Element => {
     mainStore.setLoader(false)
   }
 
-  const peopleCard = peopleStore.people.data.map((item) => {
+  const filterPeople = getFilterPeople(peopleStore.people.data)
+
+  const peopleCard = filterPeople.map((item) => {
     return <Card key={item.id} people={item}/>
   })
 
@@ -30,12 +33,12 @@ export const People = observer((): JSX.Element => {
       <div className={style.page}>
         {peopleCard}
       </div>
-      <Pagination
+      {peopleStore.people.pages > 1 && <Pagination
         currentPage={peopleStore.people.currentPage}
         page={peopleStore.people.pages}
         peopleType={PEOPLE_TYPE.PEOPLE}
         handler={handleFetchPeople}
-      />
+      />}
     </>
   )
 })

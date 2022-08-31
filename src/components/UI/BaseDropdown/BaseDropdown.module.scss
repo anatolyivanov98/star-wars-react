@@ -17,8 +17,10 @@
     background: $secondary-black;
     height: 100%;
     cursor: pointer;
+    &:first-letter {
+      text-transform: uppercase;
+    }
   }
-
   .options {
     position: absolute;
     width: 100%;
@@ -40,6 +42,10 @@
     cursor: pointer;
     border-bottom: 1px solid $border-grey-color;
     transition: $transition;
+
+    &:first-letter{
+      text-transform: uppercase;
+    }
 
     &:last-child {
       border-bottom: none;

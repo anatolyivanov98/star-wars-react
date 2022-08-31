@@ -13,7 +13,7 @@ export const Header = (): JSX.Element => {
   }
 
   const handlerFilter = (item: IGenderOption): void => {
-    console.log('handlerFilter: ', item)
+    peopleStore.setFilter(item.value)
   }
 
   return (
