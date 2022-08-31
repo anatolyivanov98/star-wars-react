@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx'
 import PeopleService from '../api/people'
 import { IPaginationModel } from '../shared/types'
 import { paginationModel } from '../shared/utils/paginationModel'
-import { FAVORITE_TYPE } from '../shared/enums'
+import { FAVORITE_TYPE, PEOPLE_TYPE } from '../shared/enums'
 class People {
   people: IPaginationModel = {
     pages: 1,
@@ -24,8 +24,8 @@ class People {
 
   async fetchPeople (): Promise<void> {
     try {
-      const res = await PeopleService.fetchPeople()
-      this.people = paginationModel(res, 1) // TODO: Refactor for favorite people after reload
+      const res = await PeopleService.fetchPeople({ page: this.people.currentPage })
+      this.people = paginationModel(res, this.people.currentPage) // TODO: Refactor for favorite people after reload
     } catch (e) {
       console.log('error - fetchPeople: ', e)
     }
@@ -43,6 +43,10 @@ class People {
       this.favoritePeople.count--
       this.favoritePeople.data = this.favoritePeople.data.filter(person => person.id !== id)
     }
+  }
+
+  setCurrentPage (currentPage: number, peopleType: PEOPLE_TYPE): void {
+    this[peopleType].currentPage = currentPage
   }
 }
 
