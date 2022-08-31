@@ -1,5 +1,5 @@
 import React from 'react'
-// import { useTranslation } from 'react-i18next'
+import peopleStore from '../../store/people'
 import { BaseInput } from '../UI/BaseInput/BaseInput'
 import style from './Header.module.scss'
 import logo from '../../assets/img/logo.svg'
@@ -8,8 +8,8 @@ import { genderFilterConfig } from '../../configs/genderFilter'
 import { IGenderOption } from '../../shared/types'
 
 export const Header = (): JSX.Element => {
-  const handlerSearch = (value: string): void => {
-    console.log('value: ', value)
+  const handlerSearch = async (value: string): Promise<void> => {
+    await peopleStore.fetchPeople(value)
   }
 
   const handlerFilter = (item: IGenderOption): void => {

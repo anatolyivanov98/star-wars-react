@@ -11,11 +11,13 @@ import { Loader } from '../../UI/Loader/Loader'
 
 export const People = observer((): JSX.Element => {
   useEffect(() => {
-    void peopleStore.fetchPeople()
+    void handleFetchPeople()
   }, [])
 
-  const handlePagination = async (): Promise<void> => {
+  const handleFetchPeople = async (): Promise<void> => {
+    mainStore.setLoader(true)
     await peopleStore.fetchPeople()
+    mainStore.setLoader(false)
   }
 
   const peopleCard = peopleStore.people.data.map((item) => {
@@ -32,7 +34,7 @@ export const People = observer((): JSX.Element => {
         currentPage={peopleStore.people.currentPage}
         page={peopleStore.people.pages}
         peopleType={PEOPLE_TYPE.PEOPLE}
-        handler={handlePagination}
+        handler={handleFetchPeople}
       />
     </>
   )

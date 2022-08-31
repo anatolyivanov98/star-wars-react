@@ -22,9 +22,9 @@ class People {
     makeAutoObservable(this)
   }
 
-  async fetchPeople (): Promise<void> {
+  async fetchPeople (search: string | null = null): Promise<void> {
     try {
-      const res = await PeopleService.fetchPeople({ page: this.people.currentPage })
+      const res = await PeopleService.fetchPeople({ page: this.people.currentPage, search })
       this.people = paginationModel(res, this.people.currentPage) // TODO: Refactor for favorite people after reload
     } catch (e) {
       console.log('error - fetchPeople: ', e)

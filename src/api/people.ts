@@ -6,7 +6,7 @@ class PeopleService extends ApiService {
     super(`${process.env.REACT_APP_BASE_API_URL as string}/api/people`)
   }
 
-  public async fetchPeople (params: {page: number}): Promise<IRequestPeople> {
+  public async fetchPeople (params: {page: number, search: string | null}): Promise<IRequestPeople> {
     return await this.get<IRequestPeople>('', { params })
   }
 }
