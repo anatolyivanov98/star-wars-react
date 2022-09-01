@@ -9,7 +9,8 @@ import { IGenderOption } from '../../shared/types'
 
 export const Header = (): JSX.Element => {
   const handlerSearch = async (value: string): Promise<void> => {
-    await peopleStore.fetchPeople(value)
+    peopleStore.setSearch(value)
+    await peopleStore.fetchPeople()
   }
 
   const handlerFilter = (item: IGenderOption): void => {

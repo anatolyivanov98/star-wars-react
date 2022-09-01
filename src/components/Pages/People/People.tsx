@@ -28,9 +28,9 @@ export const People = observer((): JSX.Element => {
   })
 
   return (
-    <>
+    <div className={style.page}>
       {mainStore.isLoader && <Loader/>}
-      <div className={style.page}>
+      <div className={style.content}>
         {peopleCard}
       </div>
       {peopleStore.people.pages > 1 && <Pagination
@@ -39,6 +39,6 @@ export const People = observer((): JSX.Element => {
         peopleType={PEOPLE_TYPE.PEOPLE}
         handler={handleFetchPeople}
       />}
-    </>
+    </div>
   )
 })

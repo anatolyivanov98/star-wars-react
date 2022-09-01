@@ -1,8 +1,15 @@
 @import "/src/assets/styles/variables";
 
 .page {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 40px;
-  padding: 20px;
+  height: calc(100% - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 40px;
+    padding: 20px;
+  }
 }
