@@ -29,6 +29,9 @@ export const Pagination = observer(({ currentPage, page, peopleType, handler }: 
   }
 
   const countOfPage = (): number[] => {
+    if (page === 2) {
+      return [1, 2]
+    }
     let count = [] as number[]
     if (currentPage <= 2) {
       count = [1, 2, 3]
