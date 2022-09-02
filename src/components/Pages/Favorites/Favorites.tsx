@@ -4,19 +4,37 @@ import peopleStore from '../../../store/people'
 import { Card } from '../../Card/Card'
 
 import style from './Favorites.module.scss'
+import { Pagination } from '../../Pagination/Pagination'
+import { PEOPLE_TYPE } from '../../../shared/enums'
+import { currentPageFavoritePerson } from '../../../shared/utils/currentPageFavoritePerson'
+import { getFilterPeople } from '../../../shared/utils/getFilterPeople'
 
 export const Favorites = observer((): JSX.Element => {
   useEffect(() => {
     peopleStore.fetchFavoritePeople()
   }, [])
 
-  const favoriteCard = peopleStore.favoritePeople.data.map((item) => {
+  const people = currentPageFavoritePerson()
+
+  const favoriteCard = getFilterPeople(people).map((item) => {
     return <Card key={item.id} people={item}/>
   })
 
+  const handleFetchPeople = async (): Promise<void> => {
+    await console.log()
+  }
+
   return (
     <div className={style.page}>
-      {favoriteCard}
+      <div className={style.content}>
+        {favoriteCard}
+      </div>
+      {peopleStore.favoritePeople.pages > 1 && <Pagination
+        currentPage={peopleStore.favoritePeople.currentPage}
+        page={peopleStore.favoritePeople.pages}
+        peopleType={PEOPLE_TYPE.FAVORITE_PEOPLE}
+        handler={handleFetchPeople}
+      />}
     </div>
 
   )

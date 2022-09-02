@@ -32,21 +32,19 @@ export const Pagination = observer(({ currentPage, page, peopleType, handler }: 
     if (page === 2) {
       return [1, 2]
     }
-    let count = [] as number[]
     if (currentPage <= 2) {
-      count = [1, 2, 3]
+      return [1, 2, 3]
     } else if (currentPage === page) {
-      count = [currentPage - 2, currentPage - 1, currentPage]
+      return [currentPage - 2, currentPage - 1, currentPage]
     } else {
-      count = [currentPage - 1, currentPage, currentPage + 1]
+      return [currentPage - 1, currentPage, currentPage + 1]
     }
-    return count
   }
 
   const btnPage = countOfPage().map(item => {
     return <BaseBtn
       active={currentPage === item}
-      handler={async () => await changePage(item)}
+      handler={() => { void changePage(item) }}
       key={item}
       text={`${item}`}
     />
@@ -54,9 +52,13 @@ export const Pagination = observer(({ currentPage, page, peopleType, handler }: 
 
   return (
     <div className={style.pagination}>
-      <BaseBtn disabled={currentPage === 1} handler={prevPage} text={'<'}/>
+      <BaseBtn
+        disabled={currentPage === 1}
+        handler={() => { void prevPage() }}
+        text={'<'}
+      />
       {btnPage}
-      <BaseBtn disabled={currentPage === page} handler={nextPage} text={'>'}/>
+      <BaseBtn disabled={currentPage === page} handler={() => { void nextPage() }} text={'>'}/>
     </div>
   )
 })

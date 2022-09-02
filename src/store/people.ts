@@ -29,7 +29,7 @@ class People {
   async fetchPeople (): Promise<void> {
     try {
       const res = await PeopleService.fetchPeople({ page: this.people.currentPage, search: this.search })
-      this.people = paginationModel(res, this.people.currentPage)
+      this.people = paginationModel(res, this.people.currentPage, PEOPLE_TYPE.PEOPLE)
 
       this.fetchFavoritePeople()
 
@@ -47,7 +47,8 @@ class People {
   fetchFavoritePeople (): void {
     const data = localStorage.getItem(favoriteDataKey)
     if (data) {
-      this.favoritePeople = JSON.parse(data)
+      const parseData = JSON.parse(data)
+      this.favoritePeople = paginationModel(parseData, parseData.currentPage, PEOPLE_TYPE.FAVORITE_PEOPLE)
     }
   }
 
@@ -70,12 +71,15 @@ class People {
       currentPerson.isFavorite = true
       this.favoritePeople.count++
       this.favoritePeople.data.push(currentPerson)
-    } else if (currentPerson && type === FAVORITE_TYPE.DELETE) {
-      currentPerson.isFavorite = false
+    } else if (type === FAVORITE_TYPE.DELETE) {
+      if (currentPerson) {
+        currentPerson.isFavorite = false
+      }
       this.favoritePeople.count--
       this.favoritePeople.data = this.favoritePeople.data.filter(person => person.id !== id)
     }
 
+    this.favoritePeople = paginationModel(this.favoritePeople, this.favoritePeople.currentPage, PEOPLE_TYPE.FAVORITE_PEOPLE)
     localStorage.setItem(favoriteDataKey, JSON.stringify(this.favoritePeople))
   }
 
