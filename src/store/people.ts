@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 import PeopleService from '../api/people'
-import { IPaginationModel } from '../shared/types'
+import { IPaginationModel, IPeople } from '../shared/types'
 import { paginationModel } from '../shared/utils/paginationModel'
 import { FAVORITE_TYPE, GENDER, PEOPLE_TYPE } from '../shared/enums'
 import { favoriteDataKey } from '../configs'
@@ -48,6 +48,11 @@ class People {
     const data = localStorage.getItem(favoriteDataKey)
     if (data) {
       const parseData = JSON.parse(data)
+      if (this.search) {
+        parseData.currentPage = 1
+        parseData.data = parseData.data.filter((item: IPeople) => item.name.includes(this.search as string))
+        parseData.count = parseData.data.length
+      }
       this.favoritePeople = paginationModel(parseData, parseData.currentPage, PEOPLE_TYPE.FAVORITE_PEOPLE)
     }
   }
